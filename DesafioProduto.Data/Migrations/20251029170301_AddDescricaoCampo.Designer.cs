@@ -4,6 +4,7 @@ using DesafioProduto.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesafioProduto.Data.Migrations
 {
     [DbContext(typeof(DesafioProdutoContext))]
-    partial class DesafioProdutoContextModelSnapshot : ModelSnapshot
+    [Migration("20251029170301_AddDescricaoCampo")]
+    partial class AddDescricaoCampo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,13 +38,7 @@ namespace DesafioProduto.Data.Migrations
                         .HasColumnType("DATETIME");
 
                     b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR(MAX)");
-
-                    b.Property<string>("LocalCompra")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("NVARCHAR(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NomeProduto")
                         .IsRequired()

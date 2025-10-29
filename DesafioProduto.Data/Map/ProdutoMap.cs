@@ -27,6 +27,15 @@ namespace DesafioProduto.Data.Map
                 .HasMaxLength(11)
                 .HasColumnType("DECIMAL(10,2)");
 
+            builder.Property(p => p.Descricao)
+               .IsRequired()
+               .HasColumnType("NVARCHAR(MAX)");
+
+            builder.Property(p => p.LocalCompra)
+               .IsRequired()
+               .HasMaxLength(50)
+               .HasColumnType("NVARCHAR(50)");
+
             builder.Property(p => p.QuantidadeProduto)
                 .IsRequired()
                 .HasMaxLength(10)

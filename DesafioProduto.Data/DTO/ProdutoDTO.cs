@@ -17,6 +17,10 @@ namespace DesafioProduto.Data.DTO
 
         public int QuantidadeProduto { get; set; }
 
+        public string? Descricao { get; set; }
+
+        public string? LocalCompra { get; set; }
+
         public DateTime DataCadastro { get; set; }
 
         public Situacao Situacao { get; set; }
