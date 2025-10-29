@@ -25,5 +25,10 @@ namespace DesafioProduto.Service.Service.Interface
 
         Task<PaginacaoResultadoDTO<ProdutoDTO>> ListarConcluidoAsync(int page, int pageSize);
 
+        Task<bool> AtualizarProdutoAsync(ProdutoDTO dto);
+
+        Task<bool> ExcluirAsync(int id);
+
+
     }
 }

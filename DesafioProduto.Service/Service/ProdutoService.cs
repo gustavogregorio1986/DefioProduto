@@ -30,6 +30,38 @@ namespace DesafioProduto.Service.Service
             return await _produtoRepository.AdicionarProduto(produto);
         }
 
+        public async Task<bool> AtualizarProdutoAsync(ProdutoDTO dto)
+        {
+            var produto = await _produtoRepository.BuscarPorIdAsync(dto.Id);
+            if (produto == null)
+                return false;
+
+            // Atualiza os campos
+            produto.NomeProduto = dto.NomeProduto;
+            produto.Preco = dto.Preco;
+            produto.QuantidadeProduto = dto.QuantidadeProduto;
+            produto.Descricao = dto.Descricao;
+            produto.LocalCompra = dto.LocalCompra;
+            produto.Situacao = dto.Situacao;
+
+            await _produtoRepository.AtualizarAsync(produto);
+            return true;
+
+
+        }
+
+        public async Task<bool> ExcluirAsync(int id)
+        {
+            var produto = await _produtoRepository.BuscarPorIdAsync(id);
+            if (produto == null)
+                return false;
+
+            await _produtoRepository.RemoverAsync(produto);
+            return true;
+
+
+        }
+
         public async Task<PaginacaoResultadoDTO<ProdutoDTO>> ListarAndamentoAsync(int page, int pageSize)
         {
             // Chama o repositório que já filtra por Situacao.Inativo

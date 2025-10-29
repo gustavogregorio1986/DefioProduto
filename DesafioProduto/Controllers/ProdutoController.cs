@@ -74,5 +74,32 @@ namespace DesafioProduto.Controllers
             var resultado = await _produtoService.ListarConcluidoAsync(page, pageSize);
             return Ok(resultado);
         }
+
+        [HttpPut]
+        [Route("Atualizar")]
+        public async Task<IActionResult> Atualizar(int id, [FromBody] ProdutoDTO dto)
+        {
+            if (id != dto.Id)
+                return BadRequest("ID da URL não bate com o corpo");
+
+            var sucesso = await _produtoService.AtualizarProdutoAsync(dto);
+            if (!sucesso)
+                return NotFound("Produto não encontrado");
+
+            return NoContent(); // ou Ok() se quiser retornar algo
+        }
+
+        [HttpDelete]
+        [Route("excluir/{id}")]
+        public async Task<IActionResult> Excluir(int id)
+        {
+            var sucesso = await _produtoService.ExcluirAsync(id);
+            if (!sucesso)
+                return NotFound("Produto não encontrado");
+
+            return NoContent(); // ou Ok("Produto excluído com sucesso")
+        }
+
+
     }
 }
