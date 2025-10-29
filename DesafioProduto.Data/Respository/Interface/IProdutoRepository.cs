@@ -13,6 +13,14 @@ namespace DesafioProduto.Data.Respository.Interface
 
         Task<(List<Produto>, int)> ListarPaginadoAsync(int page, int pageSize, string? nome);
 
+        Task<(List<Produto>, int)> ListarInativosPaginadoAsync(int page, int pageSize);
 
+        Task<(List<Produto>, int)> ListarAtivosPaginadoAsync(int page, int pageSize);
+
+        Task<(List<Produto>, int)> ListarAndamentoPaginadoAsync(int page, int pageSize);
+
+        Task<(List<Produto>, int)> ListarPendentePaginadoAsync(int page, int pageSize);
+
+        Task<(List<Produto>, int)> ListarConcluidoPaginadoAsync(int page, int pageSize);
     }
 }

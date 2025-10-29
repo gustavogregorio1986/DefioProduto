@@ -46,5 +46,33 @@ namespace DesafioProduto.Controllers
             var resultado = await _produtoService.ListarPaginadoAsync(filtro);
             return Ok(resultado);
         }
+
+        [HttpGet("Inativos")]
+        public async Task<IActionResult> ListarInativos([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        {
+            var resultado = await _produtoService.ListarInativosAsync(page, pageSize);
+            return Ok(resultado);
+        }
+
+        [HttpGet("Ativos")]
+        public async Task<IActionResult> ListarAtivos([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        {
+            var resultado = await _produtoService.ListarAtivosAsync(page, pageSize);
+            return Ok(resultado);
+        }
+
+        [HttpGet("Pendente")]
+        public async Task<IActionResult> ListarPendente([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        {
+            var resultado = await _produtoService.ListarPendenteAsync(page, pageSize);
+            return Ok(resultado);
+        }
+
+        [HttpGet("Concluido")]
+        public async Task<IActionResult> ListarConcluido([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        {
+            var resultado = await _produtoService.ListarConcluidoAsync(page, pageSize);
+            return Ok(resultado);
+        }
     }
 }

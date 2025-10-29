@@ -1,6 +1,7 @@
 ﻿using DesafioProduto.Data.Context;
 using DesafioProduto.Data.Respository.Interface;
 using DesafioProduto.Dominio.Dominio;
+using DesafioProduto.Dominio.Enum;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,67 @@ namespace DesafioProduto.Data.Respository
             return produto;
         }
 
+        public async Task<(List<Produto>, int)> ListarAndamentoPaginadoAsync(int page, int pageSize)
+        {
+            var query = _context.Produtos
+             .Where(p => p.Situacao == Situacao.Andamemto); // ou outro valor que represente inatividade
+
+            var totalItems = await query.CountAsync();
+
+            var produtos = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (produtos, totalItems);
+        }
+
+        public async Task<(List<Produto>, int)> ListarAtivosPaginadoAsync(int page, int pageSize)
+        {
+            var query = _context.Produtos
+             .Where(p => p.Situacao == Situacao.Ativo); // ou outro valor que represente inatividade
+
+            var totalItems = await query.CountAsync();
+
+            var produtos = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (produtos, totalItems);
+        }
+
+        public async Task<(List<Produto>, int)> ListarConcluidoPaginadoAsync(int page, int pageSize)
+        {
+            var query = _context.Produtos
+             .Where(p => p.Situacao == Situacao.concluido); // ou outro valor que represente inatividade
+
+            var totalItems = await query.CountAsync();
+
+            var produtos = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (produtos, totalItems);
+        }
+
+        public async Task<(List<Produto>, int)> ListarInativosPaginadoAsync(int page, int pageSize)
+        {
+            var query = _context.Produtos
+             .Where(p => p.Situacao == Situacao.Inativo); // ou outro valor que represente inatividade
+
+            var totalItems = await query.CountAsync();
+
+            var produtos = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (produtos, totalItems);
+
+        }
+
         public async Task<(List<Produto>, int)> ListarPaginadoAsync(int page, int pageSize, string? nome)
         {
             var query = _context.Produtos.AsQueryable();
@@ -36,6 +98,21 @@ namespace DesafioProduto.Data.Respository
                 query = query.Where(p => p.NomeProduto.Contains(nome));
 
             var totalItems = await query.CountAsync();
+            var produtos = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (produtos, totalItems);
+        }
+
+        public async Task<(List<Produto>, int)> ListarPendentePaginadoAsync(int page, int pageSize)
+        {
+            var query = _context.Produtos
+             .Where(p => p.Situacao == Situacao.concluido); // ou outro valor que represente inatividade
+
+            var totalItems = await query.CountAsync();
+
             var produtos = await query
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
