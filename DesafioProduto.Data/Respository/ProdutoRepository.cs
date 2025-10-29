@@ -37,7 +37,8 @@ namespace DesafioProduto.Data.Respository
 
         public async Task<Produto?> BuscarPorIdAsync(int id)
         {
-            return await _context.Produtos.FindAsync(id);
+            return await _context.Produtos
+             .FirstOrDefaultAsync(p => p.Id == id);
 
 
         }

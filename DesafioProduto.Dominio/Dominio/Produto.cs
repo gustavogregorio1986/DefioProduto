@@ -1,6 +1,7 @@
 ﻿using DesafioProduto.Dominio.Enum;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,11 @@ namespace DesafioProduto.Dominio.Dominio
 
         public decimal Total { get; set; }
 
-        public int Visualizacoes { get; private set; }
+        public int Visualizacoes { get; set; }
+
+        [NotMapped]
+        public DateTime? UltimaVisualizacao { get; private set; }
+
 
         public void RegistrarVisualizacao()
         {

@@ -4,6 +4,7 @@ using DesafioProduto.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesafioProduto.Data.Migrations
 {
     [DbContext(typeof(DesafioProdutoContext))]
-    partial class DesafioProdutoContextModelSnapshot : ModelSnapshot
+    [Migration("20251029203347_AddCampoDataUtliamVisualizacao")]
+    partial class AddCampoDataUtliamVisualizacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,9 +68,6 @@ namespace DesafioProduto.Data.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("decimal(18,2)")
                         .HasComputedColumnSql("[Preco] * [QuantidadeProduto]");
-
-                    b.Property<DateTime?>("UltimaVisualizacao")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("Visualizacoes")
                         .HasMaxLength(10)

@@ -22,6 +22,11 @@ namespace DesafioProduto.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ProdutoMap());
+            modelBuilder.Entity<Produto>()
+            .Property(p => p.UltimaVisualizacao)
+            .HasColumnType("datetime2"); // ← Aqui você define o tipo correto
+
+
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DesafioProduto.Dominio.Enum;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,9 +30,13 @@ namespace DesafioProduto.Data.DTO
 
         public int Visualizacoes { get;  set; }
 
+        [NotMapped]
+        public DateTime? UltimaVisualizacao { get; private set; }
+
         public void RegistrarVisualizacao()
         {
             Visualizacoes++;
+            UltimaVisualizacao = DateTime.Now;
         }
 
 

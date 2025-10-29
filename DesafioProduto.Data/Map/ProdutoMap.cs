@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,6 +41,9 @@ namespace DesafioProduto.Data.Map
                 .IsRequired()
                 .HasMaxLength(10)
                 .HasColumnType("INT");
+
+
+            builder.Ignore(p => p.UltimaVisualizacao);
 
             builder.Property(p => p.Visualizacoes)
                .IsRequired()

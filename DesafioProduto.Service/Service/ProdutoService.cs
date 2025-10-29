@@ -179,12 +179,13 @@ namespace DesafioProduto.Service.Service
 
         public async Task<ProdutoDTO?> VisualizarProdutoAsync(int id)
         {
-            var produto = await _produtoRepository.BuscarPorIdAsync(id);
-            if (produto == null)
+            var produto = await _produtoRepository.BuscarPorIdAsync(id); // entidade Produto
+
+            if (produto is null)
                 return null;
 
-            produto.RegistrarVisualizacao();
-            await _produtoRepository.AtualizarAsync(produto);
+            produto.RegistrarVisualizacao(); // método da entidade
+            await _produtoRepository.AtualizarAsync(produto); // salva no banco
 
             return new ProdutoDTO
             {
