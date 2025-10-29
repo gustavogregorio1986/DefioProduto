@@ -1,4 +1,5 @@
-﻿using DesafioProduto.Dominio.Dominio;
+﻿using DesafioProduto.Data.DTO;
+using DesafioProduto.Dominio.Dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,8 @@ namespace DesafioProduto.Service.Service.Interface
     public interface IProdutoService
     {
         Task<Produto> AdicionarProduto(Produto produto);
+
+        Task<PaginacaoResultadoDTO<ProdutoDTO>> ListarPaginadoAsync(ProdutoFiltroDTO filtro);
+
     }
 }

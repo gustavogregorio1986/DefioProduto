@@ -2,6 +2,7 @@
 using DesafioProduto.Data.DTO;
 using DesafioProduto.Data.Respository.Interface;
 using DesafioProduto.Dominio.Dominio;
+using DesafioProduto.Service.Service.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,13 +12,13 @@ namespace DesafioProduto.Controllers
     [ApiController]
     public class ProdutoController : ControllerBase
     {
-        private readonly IProdutoRepository _produtoRepository;
+        private readonly IProdutoService _produtoService;
         private readonly IMapper _mapper;
 
-        public ProdutoController(IProdutoRepository produtoRepository, IMapper mapper)
+        public ProdutoController(IProdutoService produtoService, IMapper mapper)
         {
             _mapper = mapper;
-            _produtoRepository = produtoRepository;
+            _produtoService = produtoService;
         }
 
         [HttpPost]
@@ -27,7 +28,7 @@ namespace DesafioProduto.Controllers
             try
             {
                 var produto = _mapper.Map<Produto>(produtoDto);
-                var resultado = await _produtoRepository.AdicionarProduto(produto);
+                var resultado = await _produtoService.AdicionarProduto(produto);
                 var resultadoDto = _mapper.Map<ProdutoDTO>(resultado);
                 return Ok(resultadoDto);
             }
@@ -35,6 +36,15 @@ namespace DesafioProduto.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+
+        [HttpGet]
+        [Route("ListarProdutos")]
+        public async Task<IActionResult> ListarProdutos([FromQuery] ProdutoFiltroDTO filtro)
+        {
+            var resultado = await _produtoService.ListarPaginadoAsync(filtro);
+            return Ok(resultado);
         }
     }
 }

@@ -10,5 +10,9 @@ namespace DesafioProduto.Data.Respository.Interface
     public interface IProdutoRepository
     {
         Task<Produto> AdicionarProduto(Produto produto);
+
+        Task<(List<Produto>, int)> ListarPaginadoAsync(int page, int pageSize, string? nome);
+
+
     }
 }

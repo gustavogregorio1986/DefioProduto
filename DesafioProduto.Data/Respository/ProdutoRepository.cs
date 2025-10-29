@@ -1,6 +1,7 @@
 ﻿using DesafioProduto.Data.Context;
 using DesafioProduto.Data.Respository.Interface;
 using DesafioProduto.Dominio.Dominio;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,22 @@ namespace DesafioProduto.Data.Respository
             await _context.AddAsync(produto);
             await _context.SaveChangesAsync();
             return produto;
+        }
+
+        public async Task<(List<Produto>, int)> ListarPaginadoAsync(int page, int pageSize, string? nome)
+        {
+            var query = _context.Produtos.AsQueryable();
+
+            if (!string.IsNullOrEmpty(nome))
+                query = query.Where(p => p.NomeProduto.Contains(nome));
+
+            var totalItems = await query.CountAsync();
+            var produtos = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (produtos, totalItems);
         }
     }
 }
