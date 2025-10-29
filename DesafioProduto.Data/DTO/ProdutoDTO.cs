@@ -31,7 +31,7 @@ namespace DesafioProduto.Data.DTO
         public int Visualizacoes { get;  set; }
 
         [NotMapped]
-        public DateTime? UltimaVisualizacao { get; private set; }
+        public DateTime? UltimaVisualizacao { get; set; }
 
         public void RegistrarVisualizacao()
         {

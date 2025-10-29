@@ -195,7 +195,8 @@ namespace DesafioProduto.Service.Service
                 QuantidadeProduto = produto.QuantidadeProduto,
                 Descricao = produto.Descricao,
                 LocalCompra = produto.LocalCompra,
-                Visualizacoes = produto.Visualizacoes
+                Visualizacoes = produto.Visualizacoes,
+                UltimaVisualizacao = DateTime.Now
             };
 
         }
