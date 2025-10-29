@@ -41,6 +41,11 @@ namespace DesafioProduto.Data.Map
                 .HasMaxLength(10)
                 .HasColumnType("INT");
 
+            builder.Property(p => p.Visualizacoes)
+               .IsRequired()
+               .HasMaxLength(10)
+               .HasColumnType("INT");
+
             builder.Property(p => p.DataCadastro)
                 .IsRequired()
                 .HasMaxLength(10)

@@ -100,6 +100,22 @@ namespace DesafioProduto.Controllers
             return NoContent(); // ou Ok("Produto excluído com sucesso")
         }
 
+        [HttpGet]
+        [Route("ListarNoShopping")]
+        public async Task<IActionResult> ListarNoShopping([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        {
+            var resultado = await _produtoService.ListarNoShoppingAsync(page, pageSize);
+            return Ok(resultado);
+        }
 
+        [HttpGet("{id}/visualizar")]
+        public async Task<IActionResult> Visualizar(int id)
+        {
+            var produto = await _produtoService.VisualizarProdutoAsync(id);
+            if (produto == null)
+                return NotFound("Produto não encontrado");
+
+            return Ok(produto);
+        }
     }
 }

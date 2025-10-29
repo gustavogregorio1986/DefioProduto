@@ -62,6 +62,20 @@ namespace DesafioProduto.Service.Service
 
         }
 
+        public async Task<PaginacaoResultadoDTO<ProdutoDTO>> ListarNoShoppingAsync(int page, int pageSize)
+        {
+            var (produtos, totalItems) = await _produtoRepository.ListarNoShoppingAsync(page, pageSize);
+
+            var dtoList = _mapper.Map<List<ProdutoDTO>>(produtos);
+
+            return new PaginacaoResultadoDTO<ProdutoDTO>
+            {
+                TotalItems = totalItems,
+                TotalPages = (int)Math.Ceiling((double)totalItems / pageSize),
+                Items = dtoList
+            };
+        }
+
         public async Task<PaginacaoResultadoDTO<ProdutoDTO>> ListarAndamentoAsync(int page, int pageSize)
         {
             // Chama o repositório que já filtra por Situacao.Inativo
@@ -161,6 +175,28 @@ namespace DesafioProduto.Service.Service
                 TotalPages = (int)Math.Ceiling((double)totalItems / pageSize),
                 Items = dtoList
             };
+        }
+
+        public async Task<ProdutoDTO?> VisualizarProdutoAsync(int id)
+        {
+            var produto = await _produtoRepository.BuscarPorIdAsync(id);
+            if (produto == null)
+                return null;
+
+            produto.RegistrarVisualizacao();
+            await _produtoRepository.AtualizarAsync(produto);
+
+            return new ProdutoDTO
+            {
+                Id = produto.Id,
+                NomeProduto = produto.NomeProduto,
+                Preco = produto.Preco,
+                QuantidadeProduto = produto.QuantidadeProduto,
+                Descricao = produto.Descricao,
+                LocalCompra = produto.LocalCompra,
+                Visualizacoes = produto.Visualizacoes
+            };
+
         }
     }
 }

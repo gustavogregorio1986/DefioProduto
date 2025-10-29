@@ -27,6 +27,16 @@ namespace DesafioProduto.Dominio.Dominio
 
         public decimal Total { get; set; }
 
+        public int Visualizacoes { get; private set; }
+
+        public void RegistrarVisualizacao()
+        {
+            Visualizacoes++;
+        }
+
+
+
+
 
     }
 }

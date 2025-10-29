@@ -27,6 +27,8 @@ namespace DesafioProduto.Data.Respository.Interface
         Task AtualizarAsync(Produto produto);
 
         Task RemoverAsync(Produto produto);
+
+        Task<(List<Produto>, int)> ListarNoShoppingAsync(int page, int pageSize);
     }
 
 }

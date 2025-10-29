@@ -26,5 +26,15 @@ namespace DesafioProduto.Data.DTO
         public Situacao Situacao { get; set; }
 
         public decimal Total { get; set; }
+
+        public int Visualizacoes { get;  set; }
+
+        public void RegistrarVisualizacao()
+        {
+            Visualizacoes++;
+        }
+
+
+
     }
 }

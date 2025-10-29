@@ -103,6 +103,23 @@ namespace DesafioProduto.Data.Respository
 
         }
 
+        public async Task<(List<Produto>, int)> ListarNoShoppingAsync(int page, int pageSize)
+        {
+            var query = _context.Produtos
+         .Where(p => p.LocalCompra.Contains( "Shopping")); // filtro por localização
+
+            var totalItems = await query.CountAsync();
+
+            var produtos = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (produtos, totalItems);
+
+
+        }
+
         public async Task<(List<Produto>, int)> ListarPaginadoAsync(int page, int pageSize, string? nome)
         {
             var query = _context.Produtos.AsQueryable();
