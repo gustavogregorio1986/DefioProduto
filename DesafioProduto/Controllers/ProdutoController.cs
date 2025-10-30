@@ -23,12 +23,12 @@ namespace DesafioProduto.Controllers
 
         [HttpPost]
         [Route("AdicionarProduto")]
-        public async Task<IActionResult> AdicionarProduto([FromBody] ProdutoDTO produtoDto)
+        public async Task<IActionResult> AdicionarProduto([FromBody] ProdutoDTO produtoDto, bool temDesconto)
         {
             try
             {
                 var produto = _mapper.Map<Produto>(produtoDto);
-                var resultado = await _produtoService.AdicionarProduto(produto);
+                var resultado = await _produtoService.AdicionarProduto(produto, temDesconto);
                 var resultadoDto = _mapper.Map<ProdutoDTO>(resultado);
                 return Ok(resultadoDto);
             }
