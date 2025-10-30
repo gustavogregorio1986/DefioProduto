@@ -16,6 +16,8 @@ namespace DesafioProduto.Data.DTO
 
         public Decimal Preco { get; set; }
 
+        public decimal? PrecoComDesconto { get; set; }
+
         public int QuantidadeProduto { get; set; }
 
         public string? Descricao { get; set; }

@@ -28,6 +28,10 @@ namespace DesafioProduto.Data.Map
                 .HasMaxLength(11)
                 .HasColumnType("DECIMAL(10,2)");
 
+            builder.Property(p => p.PrecoComDesconto)
+                .HasMaxLength(11)
+                .HasColumnType("DECIMAL(10,2)");
+
             builder.Property(p => p.Descricao)
                .IsRequired()
                .HasColumnType("NVARCHAR(MAX)");

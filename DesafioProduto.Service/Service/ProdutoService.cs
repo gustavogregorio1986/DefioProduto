@@ -195,6 +195,7 @@ namespace DesafioProduto.Service.Service
                 Id = produto.Id,
                 NomeProduto = produto.NomeProduto,
                 Preco = produto.Preco,
+                PrecoComDesconto = produto.PrecoComDesconto,
                 QuantidadeProduto = produto.QuantidadeProduto,
                 Descricao = produto.Descricao,
                 LocalCompra = produto.LocalCompra,
