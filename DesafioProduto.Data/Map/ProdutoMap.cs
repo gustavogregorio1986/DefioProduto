@@ -23,56 +23,53 @@ namespace DesafioProduto.Data.Map
                 .HasMaxLength(50)
                 .HasColumnType("NVARCHAR(50)");
 
+            builder.Property(p => p.Categoria)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasColumnType("NVARCHAR(50)");
+
             builder.Property(p => p.Preco)
                 .IsRequired()
-                .HasMaxLength(11)
                 .HasColumnType("DECIMAL(10,2)");
 
             builder.Property(p => p.PrecoComDesconto)
-                .HasMaxLength(11)
                 .HasColumnType("DECIMAL(10,2)");
 
             builder.Property(p => p.Descricao)
-               .IsRequired()
-               .HasColumnType("NVARCHAR(MAX)");
+                .IsRequired()
+                .HasColumnType("NVARCHAR(MAX)");
 
             builder.Property(p => p.LocalCompra)
-               .IsRequired()
-               .HasMaxLength(50)
-               .HasColumnType("NVARCHAR(50)");
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasColumnType("NVARCHAR(50)");
 
             builder.Property(p => p.QuantidadeProduto)
                 .IsRequired()
-                .HasMaxLength(10)
                 .HasColumnType("INT");
 
             builder.Property(p => p.Favorito)
                 .IsRequired()
-                .HasColumnType("bit"); // Para SQL Server
-
+                .HasColumnType("BIT");
 
             builder.Property(p => p.UltimaVisualizacao)
-                .HasMaxLength(50)
-                .HasColumnType("NVARCHAR(40)"); ;
+                .HasColumnType("DATETIME");
 
             builder.Property(p => p.Visualizacoes)
-               .IsRequired()
-               .HasMaxLength(10)
-               .HasColumnType("INT");
+                .IsRequired()
+                .HasColumnType("INT");
 
             builder.Property(p => p.DataCadastro)
                 .IsRequired()
-                .HasMaxLength(10)
                 .HasColumnType("DATETIME");
 
             builder.Property(p => p.Situacao)
                 .IsRequired()
-                .HasMaxLength(50)
+                .HasMaxLength(40)
                 .HasColumnType("NVARCHAR(40)");
 
             builder.Property(p => p.Total)
-                 .HasComputedColumnSql("[Preco] * [QuantidadeProduto]");
-
+                .HasComputedColumnSql("[Preco] * [QuantidadeProduto]", stored: true);
 
         }
     }

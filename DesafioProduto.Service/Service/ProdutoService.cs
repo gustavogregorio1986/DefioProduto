@@ -48,10 +48,16 @@ namespace DesafioProduto.Service.Service
             // Atualiza os campos
             produto.NomeProduto = dto.NomeProduto;
             produto.Preco = dto.Preco;
+            produto.PrecoComDesconto = dto.PrecoComDesconto;
             produto.QuantidadeProduto = dto.QuantidadeProduto;
             produto.Descricao = dto.Descricao;
             produto.LocalCompra = dto.LocalCompra;
             produto.Situacao = dto.Situacao;
+            produto.Total = dto.Total;
+            produto.Favorito = dto.Favorito;
+            produto.Categoria = dto.Categoria;
+            produto.UltimaVisualizacao = dto.UltimaVisualizacao;
+            produto.Visualizacoes = dto.Visualizacoes;
 
             await _produtoRepository.AtualizarAsync(produto);
             return true;
@@ -206,7 +212,9 @@ namespace DesafioProduto.Service.Service
                 Descricao = produto.Descricao,
                 LocalCompra = produto.LocalCompra,
                 Visualizacoes = produto.Visualizacoes,
-                UltimaVisualizacao = produto.UltimaVisualizacao
+                UltimaVisualizacao = DateTime.Now
+
+
             };
 
         }

@@ -30,13 +30,20 @@ namespace DesafioProduto.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Categoria")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("NVARCHAR(50)");
+
                     b.Property<DateTime>("DataCadastro")
-                        .HasMaxLength(10)
                         .HasColumnType("DATETIME");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("NVARCHAR(MAX)");
+
+                    b.Property<bool>("Favorito")
+                        .HasColumnType("BIT");
 
                     b.Property<string>("LocalCompra")
                         .IsRequired()
@@ -49,34 +56,28 @@ namespace DesafioProduto.Data.Migrations
                         .HasColumnType("NVARCHAR(50)");
 
                     b.Property<decimal>("Preco")
-                        .HasMaxLength(11)
                         .HasColumnType("DECIMAL(10,2)");
 
                     b.Property<decimal?>("PrecoComDesconto")
-                        .HasMaxLength(11)
                         .HasColumnType("DECIMAL(10,2)");
 
                     b.Property<int>("QuantidadeProduto")
-                        .HasMaxLength(10)
                         .HasColumnType("INT");
 
                     b.Property<string>("Situacao")
                         .IsRequired()
-                        .HasMaxLength(50)
+                        .HasMaxLength(40)
                         .HasColumnType("NVARCHAR(40)");
 
                     b.Property<decimal>("Total")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("decimal(18,2)")
-                        .HasComputedColumnSql("[Preco] * [QuantidadeProduto]");
+                        .HasComputedColumnSql("[Preco] * [QuantidadeProduto]", true);
 
-                    b.Property<string>("UltimaVisualizacao")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("NVARCHAR(40)");
+                    b.Property<DateTime?>("UltimaVisualizacao")
+                        .HasColumnType("DATETIME");
 
                     b.Property<int>("Visualizacoes")
-                        .HasMaxLength(10)
                         .HasColumnType("INT");
 
                     b.HasKey("Id");

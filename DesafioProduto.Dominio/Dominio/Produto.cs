@@ -32,12 +32,12 @@ namespace DesafioProduto.Dominio.Dominio
 
         public int Visualizacoes { get; set; }
 
-        public string UltimaVisualizacao { get; set; }
+        public DateTime? UltimaVisualizacao { get; set; }
 
         public bool Favorito { get; set; } = false;
 
 
-
+        public string? Categoria { get; set; }
 
         public void RegistrarVisualizacao()
         {
