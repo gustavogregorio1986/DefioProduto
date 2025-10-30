@@ -28,8 +28,14 @@ namespace DesafioProduto.Service.Service
             _mapper = mapper;
         }
 
-        public async Task<Produto> AdicionarProduto(Produto produto)
+        private void AplicarDesconto(Produto produto, bool temDesconto)
         {
+            produto.PrecoComDesconto = temDesconto ? produto.Preco * 0.9m : null;
+        }
+
+        public async Task<Produto> AdicionarProduto(Produto produto, bool temDesconto)
+        {
+            AplicarDesconto(produto, temDesconto);
             return await _produtoRepository.AdicionarProduto(produto);
         }
 

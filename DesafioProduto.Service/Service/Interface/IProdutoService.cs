@@ -11,7 +11,7 @@ namespace DesafioProduto.Service.Service.Interface
 {
     public interface IProdutoService
     {
-        Task<Produto> AdicionarProduto(Produto produto);
+        Task<Produto> AdicionarProduto(Produto produto, bool temDesconto);
 
         Task<PaginacaoResultadoDTO<ProdutoDTO>> ListarPaginadoAsync(ProdutoFiltroDTO filtro);
 
