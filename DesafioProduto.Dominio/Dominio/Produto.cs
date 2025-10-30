@@ -34,6 +34,10 @@ namespace DesafioProduto.Dominio.Dominio
 
         public string UltimaVisualizacao { get; set; }
 
+        public bool Favorito { get; set; } = false;
+
+
+
 
         public void RegistrarVisualizacao()
         {

@@ -46,6 +46,10 @@ namespace DesafioProduto.Data.Map
                 .HasMaxLength(10)
                 .HasColumnType("INT");
 
+            builder.Property(p => p.Favorito)
+                .IsRequired()
+                .HasColumnType("bit"); // Para SQL Server
+
 
             builder.Property(p => p.UltimaVisualizacao)
                 .HasMaxLength(50)

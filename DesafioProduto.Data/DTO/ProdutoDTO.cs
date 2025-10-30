@@ -34,6 +34,8 @@ namespace DesafioProduto.Data.DTO
 
         public string? UltimaVisualizacao { get; set; }
 
+        public bool Favorito { get; set; } = false;
+
         public void RegistrarVisualizacao()
         {
             Visualizacoes++;

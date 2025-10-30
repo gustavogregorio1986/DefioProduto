@@ -5,6 +5,7 @@ using DesafioProduto.Dominio.Dominio;
 using DesafioProduto.Service.Service.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DesafioProduto.Controllers
 {
@@ -117,6 +118,18 @@ namespace DesafioProduto.Controllers
                 return NotFound();
 
             return Ok(produtoDto);
+        }
+
+        [HttpPut("{id}/favorito")]
+        public async Task<IActionResult> AlterarFavorito(int id, [FromQuery] bool favorito)
+        {
+            var produto = await _produtoService.BuscarPorIdAsync(id);
+            if (produto == null)
+                return NotFound();
+
+            produto.Favorito = favorito;
+
+            return Ok(new { produto.Id, produto.Favorito });
         }
     }
 }
