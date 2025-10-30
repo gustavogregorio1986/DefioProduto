@@ -30,8 +30,7 @@ namespace DesafioProduto.Dominio.Dominio
 
         public int Visualizacoes { get; set; }
 
-        [NotMapped]
-        public DateTime? UltimaVisualizacao { get; set; }
+        public string UltimaVisualizacao { get; set; }
 
 
         public void RegistrarVisualizacao()

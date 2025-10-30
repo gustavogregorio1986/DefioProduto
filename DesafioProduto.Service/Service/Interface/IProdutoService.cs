@@ -32,5 +32,7 @@ namespace DesafioProduto.Service.Service.Interface
         Task<PaginacaoResultadoDTO<ProdutoDTO>> ListarNoShoppingAsync(int page, int pageSize);
 
         Task<ProdutoDTO?> VisualizarProdutoAsync(int id);
+
+        Task<Produto?> BuscarPorIdAsync(int id);
     }
 }

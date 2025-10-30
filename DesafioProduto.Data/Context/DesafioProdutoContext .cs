@@ -11,7 +11,7 @@ namespace DesafioProduto.Data.Context
 {
     public class DesafioProdutoContext : DbContext
     {
-        public DesafioProdutoContext(DbContextOptions options)
+        public DesafioProdutoContext(DbContextOptions<DesafioProdutoContext> options)
             : base(options)
         {
             
@@ -22,9 +22,7 @@ namespace DesafioProduto.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ProdutoMap());
-            modelBuilder.Entity<Produto>()
-            .Property(p => p.UltimaVisualizacao)
-            .HasColumnType("datetime2"); // ← Aqui você define o tipo correto
+            
 
 
         }

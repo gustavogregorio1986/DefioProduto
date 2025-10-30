@@ -43,7 +43,9 @@ namespace DesafioProduto.Data.Map
                 .HasColumnType("INT");
 
 
-            builder.Ignore(p => p.UltimaVisualizacao);
+            builder.Property(p => p.UltimaVisualizacao)
+                .HasMaxLength(50)
+                .HasColumnType("NVARCHAR(40)"); ;
 
             builder.Property(p => p.Visualizacoes)
                .IsRequired()

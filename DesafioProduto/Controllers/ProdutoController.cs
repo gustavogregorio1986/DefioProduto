@@ -108,19 +108,15 @@ namespace DesafioProduto.Controllers
             return Ok(resultado);
         }
 
-        [HttpGet("{id}/visualizar")]
+        [HttpGet("visualizar/{id}")]
         public async Task<IActionResult> Visualizar(int id)
         {
-            var produto = await _produtoService.VisualizarProdutoAsync(id);
+            var produtoDto = await _produtoService.VisualizarProdutoAsync(id);
 
-            if (produto is null)
+            if (produtoDto is null)
                 return NotFound();
 
-            produto.RegistrarVisualizacao();
-
-            await _produtoService.AtualizarProdutoAsync(produto);
-
-            return Ok(produto); // ou mapeie para um DTO se preferir
+            return Ok(produtoDto);
         }
     }
 }

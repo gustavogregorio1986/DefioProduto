@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DesafioProduto.Data.Context;
 using DesafioProduto.Data.DTO;
 using DesafioProduto.Data.Respository.Interface;
 using DesafioProduto.Dominio.Dominio;
@@ -6,6 +7,7 @@ using DesafioProduto.Dominio.Enum;
 using DesafioProduto.Service.Service.Interface;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +18,7 @@ namespace DesafioProduto.Service.Service
     {
         private readonly IProdutoRepository _produtoRepository;
         private readonly IMapper _mapper;
+
 
 
 
@@ -196,9 +199,14 @@ namespace DesafioProduto.Service.Service
                 Descricao = produto.Descricao,
                 LocalCompra = produto.LocalCompra,
                 Visualizacoes = produto.Visualizacoes,
-                UltimaVisualizacao = DateTime.Now
+                UltimaVisualizacao = produto.UltimaVisualizacao
             };
 
+        }
+
+        public async Task<Produto?> BuscarPorIdAsync(int id)
+        {
+           return await _produtoRepository.BuscarPorIdAsync(id);
         }
     }
 }
