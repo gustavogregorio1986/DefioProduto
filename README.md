@@ -2,6 +2,12 @@
 
 Atuo no desenvolvimento de aplicações web combinando boas práticas, organização e foco em performance. Tenho experiência com front-end, back-end, APIs REST e bancos de dados relacionais e não-relacionais.
 
+## 🎯 Objetivos no momento
+
+- Aprimorar arquitetura backend  
+- Criar soluções escaláveis e automatizadas  
+- Integrar projetos com IA
+
 ## 📬 Contato
 
 Email: **gustavogregorio1986@gmail.com**  
